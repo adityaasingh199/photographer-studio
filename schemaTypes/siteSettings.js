@@ -34,10 +34,14 @@ export default defineType({
           .error('Zyada se zyada 5 photos daal sakte hain'),
     }),
     defineField({
-      name: 'profilePhoto',
-      title: 'Aapki apni photo (About page ke liye)',
-      type: 'image',
-      options: {hotspot: true},
+      name: 'profilePhotos',
+      title: 'Aapki photos (About page ke liye)',
+      type: 'array',
+      description:
+        'Aap ek saath multiple photos upload kar sakte hain. About page ke liye best photos yahan daalein.',
+      of: [{type: 'image', options: {hotspot: true}}],
+      options: {layout: 'grid'},
+      validation: (Rule) => Rule.min(1).error('Kam se kam ek photo daalni zaroori hai'),
     }),
     defineField({
       name: 'aboutHeading',

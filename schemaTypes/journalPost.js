@@ -26,10 +26,14 @@ export default defineType({
       validation: (Rule) => Rule.required().error('Slug zaroori hai — title se apne aap banega'),
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover photo',
-      type: 'image',
-      options: {hotspot: true},
+      name: 'coverImages',
+      title: 'Cover photos',
+      type: 'array',
+      description:
+        'Ek saath multiple cover photos upload kar sakte hain. Best cover image ko front-end pe use karna easy rahega.',
+      of: [{type: 'image', options: {hotspot: true}}],
+      options: {layout: 'grid'},
+      validation: (Rule) => Rule.min(1).error('Kam se kam ek cover photo daalni zaroori hai'),
     }),
     defineField({
       name: 'excerpt',
@@ -82,7 +86,7 @@ export default defineType({
     select: {
       title: 'title',
       subtitle: 'publishedAt',
-      media: 'coverImage',
+      media: 'coverImages.0',
     },
     prepare({title, subtitle, media}) {
       return {

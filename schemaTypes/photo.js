@@ -15,11 +15,13 @@ export default defineType({
   icon: ImageIcon,
   fields: [
     defineField({
-      name: 'image',
-      title: 'Photo',
-      type: 'image',
-      options: {hotspot: true},
-      validation: (Rule) => Rule.required().error('Photo daalna zaroori hai'),
+      name: 'images',
+      title: 'Photos',
+      type: 'array',
+      description: 'Ek saath multiple photos upload kar sakte hain. Gallery ke liye sabse best photos yahan daalein.',
+      of: [{type: 'image', options: {hotspot: true}}],
+      options: {layout: 'grid'},
+      validation: (Rule) => Rule.min(1).error('Kam se kam ek photo daalni zaroori hai'),
     }),
     defineField({
       name: 'title',
@@ -62,7 +64,7 @@ export default defineType({
     select: {
       title: 'title',
       subtitle: 'category',
-      media: 'image',
+      media: 'images.0',
     },
     prepare({title, subtitle, media}) {
       const categoryLabel = PHOTO_CATEGORIES.find((c) => c.value === subtitle)?.title || subtitle

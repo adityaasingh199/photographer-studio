@@ -14,9 +14,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'logo',
-      title: 'Logo',
-      type: 'image',
+      name: 'logos',
+      title: 'Logos',
+      type: 'array',
+      description: 'Ek hi baar mein multiple logos upload kar sakte hain.',
+      of: [{type: 'image', options: {hotspot: true}}],
+      options: {layout: 'grid'},
+      validation: (Rule) => Rule.min(1).error('Kam se kam ek logo daalna zaroori hai'),
     }),
     defineField({
       name: 'link',
@@ -28,7 +32,7 @@ export default defineType({
   preview: {
     select: {
       title: 'outlet',
-      media: 'logo',
+      media: 'logos.0',
     },
   },
 })

@@ -39,24 +39,28 @@ export default defineType({
       validation: (Rule) => Rule.required().error('Password daalna zaroori hai'),
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover photo',
-      type: 'image',
-      options: {hotspot: true},
-      description: 'Ye photo gallery ki list mein dikhegi',
+      name: 'coverImages',
+      title: 'Cover photos',
+      type: 'array',
+      description: 'Ye photo gallery ki list mein dikhegi. Ek saath multiple cover photos select kar sakte hain.',
+      of: [{type: 'image', options: {hotspot: true}}],
+      options: {layout: 'grid'},
+      validation: (Rule) => Rule.min(1).error('Kam se kam ek cover photo daalni zaroori hai'),
     }),
     defineField({
       name: 'photos',
       title: 'Saari photos',
       type: 'array',
       of: [{type: 'image', options: {hotspot: true}}],
+      options: {layout: 'grid'},
+      validation: (Rule) => Rule.min(1).error('Kam se kam ek photo daalni zaroori hai'),
     }),
   ],
   preview: {
     select: {
       title: 'clientName',
       subtitle: 'shootDate',
-      media: 'coverImage',
+      media: 'coverImages.0',
     },
     prepare({title, subtitle, media}) {
       return {
