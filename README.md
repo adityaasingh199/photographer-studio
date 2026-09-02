@@ -1,9 +1,74 @@
-# Sanity Clean Content Studio
+# Keshav Photography Studio
 
-Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
+This is the Sanity content studio for the photographer portfolio website. It manages the CMS content for the site, including gallery images, journal posts, testimonials, client galleries, and site-wide settings.
 
-Now you can do the following things:
+## Project purpose
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the Sanity community](https://www.sanity.io/community/join?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+The studio is used to manage:
+
+- site settings and homepage hero content
+- photo gallery entries
+- client private galleries
+- journal/blog posts
+- press mentions and media logos
+- testimonials
+
+## Tech stack
+
+- Sanity Studio
+- React
+- Vite-based Sanity build setup
+
+## Local development
+
+From the studio folder:
+
+```bash
+npm install
+npm run dev
+```
+
+To build the studio:
+
+```bash
+npm run build
+```
+
+To start the production build locally:
+
+```bash
+npm run start
+```
+
+## Main schema types
+
+The studio includes these document types:
+
+- `siteSettings`
+- `photo`
+- `testimonial`
+- `journalPost`
+- `clientGallery`
+- `pressMention`
+
+## Notes
+
+- The project is configured as a Sanity Studio under the `studio/` folder.
+- The studio is set up to hide the singleton `siteSettings` from standard creation flows.
+- Content is connected to the configured Sanity project and dataset defined in `sanity.config.js`.
+
+## Useful commands
+
+```bash
+npm run dev
+npm run build
+npm run deploy
+npm run deploy-graphql
+```
+
+## Important files
+
+- `sanity.config.js` — Studio configuration
+- `schemaTypes/` — content model definitions
+- `structure.js` — custom navigation structure
+- `static/` — static assets
